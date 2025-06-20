@@ -1,7 +1,7 @@
 import { TRPCError, initTRPC } from "@trpc/server";
-import { getServerSession } from "next-auth";
+// import { getServerSession } from "next-auth";
 import { NextRequest } from "next/server";
-import { authOptions } from "@/lib/auth";
+// import { authOptions } from "@/lib/auth";
 
 export type CreateContextOptions = {
   req?: NextRequest;
@@ -9,7 +9,17 @@ export type CreateContextOptions = {
 };
 
 export const createTRPCContext = async (opts: CreateContextOptions) => {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
+  // Mock session for development
+  const session = { 
+    user: {
+      id: "dev-user-id",
+      name: "Usuário Dev",
+      email: "dev@example.com",
+      image: "https://placehold.co/400x400/1f2937/ffffff?text=Dev",
+      role: "USER",
+    }
+  };
 
   return {
     session,
